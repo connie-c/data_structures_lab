@@ -17,51 +17,90 @@ def all_houses(filename):
 
     houses = set()
 
-    for line in filename:
-        house = line[2]
+    # open(filename)
+
+    # .rstrip()
+    # .split("|")
+
+    for line in open(filename):
+      line = line.rstrip()
+      line = line.split("|")
+      # print(line)
+      house = line[2]
+      # if house:
+
+      if house != "":
         houses.add(house)
     return houses
 
-print(all_houses(cohort_data.txt))
 
-
-    # # TODO: replace this with your code
+    # TODO: replace this with your code
 
 
 
-# def students_by_cohort(filename, cohort='All'):
-#     """Return a list of students' full names by cohort.
+def students_by_cohort(filename, cohort='All'):
+    """Return a list of students' full names by cohort.
 
-#     Names are sorted in alphabetical order. If a cohort isn't
-#     given, return a list of all students. For example:
-#       >>> students_by_cohort('cohort_data.txt')
-#       ['Adrian Pucey', 'Alicia Spinnet', ..., 'Zacharias Smith']
+    Names are sorted in alphabetical order. If a cohort isn't
+    given, return a list of all students. For example:
+      >>> students_by_cohort('cohort_data.txt')
+      ['Adrian Pucey', 'Alicia Spinnet', ..., 'Zacharias Smith']
 
-#       >>> students_by_cohort('cohort_data.txt', cohort='Fall 2015')
-#       ['Angelina Johnson', 'Cho Chang', ..., 'Terence Higgs', 'Theodore Nott']
+      >>> students_by_cohort('cohort_data.txt', cohort='Fall 2015')
+      ['Angelina Johnson', 'Cho Chang', ..., 'Terence Higgs', 'Theodore Nott']
 
-#       >>> students_by_cohort('cohort_data.txt', cohort='Winter 2016')
-#       ['Adrian Pucey', 'Andrew Kirke', ..., 'Roger Davies', 'Susan Bones']
+      >>> students_by_cohort('cohort_data.txt', cohort='Winter 2016')
+      ['Adrian Pucey', 'Andrew Kirke', ..., 'Roger Davies', 'Susan Bones']
 
-#       >>> students_by_cohort('cohort_data.txt', cohort='Spring 2016')
-#       ['Cormac McLaggen', 'Demelza Robins', ..., 'Zacharias Smith']
+      >>> students_by_cohort('cohort_data.txt', cohort='Spring 2016')
+      ['Cormac McLaggen', 'Demelza Robins', ..., 'Zacharias Smith']
 
-#       >>> students_by_cohort('cohort_data.txt', cohort='Summer 2016')
-#       ['Alicia Spinnet', 'Dean Thomas', ..., 'Terry Boot', 'Vincent Crabbe']
+      >>> students_by_cohort('cohort_data.txt', cohort='Summer 2016')
+      ['Alicia Spinnet', 'Dean Thomas', ..., 'Terry Boot', 'Vincent Crabbe']
 
-#     Arguments:
-#       - filename (str): the path to a data file
-#       - cohort (str): optional, the name of a cohort
+    Arguments:
+      - filename (str): the path to a data file
+      - cohort (str): optional, the name of a cohort
 
-#     Return:
-#       - list[list]: a list of lists
-#     """
+    Return:
+      - list[list]: a list of lists
+    """
 
-#     students = []
+    # students = []
 
-#     # TODO: replace this with your code
+    # cohort_data = open(filename)
 
-#     return sorted(students)
+    # for line in cohort_data:
+    #   # The `_` is a way to say, "Hey don't worry about this variable
+    #   # because we'll never use it --- we only care about `first`,
+    #   # `last`, and `cohort_name`.
+    #   #
+    #   # Python doesn't handle underscores in a special way or anything ---
+    #   # it's still just a variable name.
+    #   first, last, _, _, cohort_name = line.rstrip().split('|')
+
+    #   if cohort_name not in ('I', 'G') and cohort in ('All', cohort_name):
+    #       students.append(f"{first} {last}")
+
+    # return sorted(students)
+
+
+    students = []
+    # filename = "cohort_data.txt"
+
+    # TODO: replace this with your code
+
+    for line in open(filename):
+      line = line.rstrip()
+      line = line.split("|")
+      cohort_name = line[4]
+      student_fullname = f"{line[0]} {line[1]}"
+      if cohort_name == cohort or cohort == "All":
+        students.append(student_fullname)
+        # print(f"{cohort_name} = {cohort}")
+    return sorted(students)
+
+# print(students_by_cohort("cohort_data.txt", "Winter 2016"))
 
 
 # def all_names_by_house(filename):
@@ -190,18 +229,18 @@ print(all_houses(cohort_data.txt))
 #     # TODO: replace this with your code
 
 
-# ##############################################################################
-# # END OF MAIN EXERCISE.  Yay!  You did it! You Rock!
-# #
+##############################################################################
+# END OF MAIN EXERCISE.  Yay!  You did it! You Rock!
+#
 
-# if __name__ == '__main__':
-#     import doctest
+if __name__ == '__main__':
+    import doctest
 
-#     result = doctest.testfile('doctests.py',
-#                               report=False,
-#                               optionflags=(
-#                                   doctest.REPORT_ONLY_FIRST_FAILURE
-#                               ))
-#     doctest.master.summarize(1)
-#     if result.failed == 0:
-#         print('ALL TESTS PASSED')
+    result = doctest.testfile('doctests.py',
+                              report=False,
+                              optionflags=(
+                                  doctest.REPORT_ONLY_FIRST_FAILURE
+                              ))
+    doctest.master.summarize(1)
+    if result.failed == 0:
+        print('ALL TESTS PASSED')
